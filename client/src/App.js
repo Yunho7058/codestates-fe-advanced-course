@@ -1,11 +1,15 @@
-
-import './App.css';
+import Post from './page/Post';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 function App() {
   return (
-    <div >
-      하이
-    </div>
+    <>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Post />} />
+        </Routes>
+      </BrowserRouter>
+    </>
   );
 }
 
