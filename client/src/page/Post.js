@@ -116,7 +116,7 @@ function Post() {
           })}
         </PostListBox>
         <PaginationBox>
-          <Btn onClick={() => handlePagination('+')}> + </Btn>
+          <Btn onClick={() => handlePagination('-')}> + </Btn>
           <Btn onClick={() => setPaginationNum(1)}> 1 </Btn>
           <Btn onClick={() => setPaginationNum(2)}> 2 </Btn>
           <Btn onClick={() => setPaginationNum(3)}> 3 </Btn>
@@ -127,7 +127,7 @@ function Post() {
           <Btn onClick={() => setPaginationNum(8)}> 8 </Btn>
           <Btn onClick={() => setPaginationNum(9)}> 9 </Btn>
           <Btn onClick={() => setPaginationNum(10)}> 10 </Btn>
-          <Btn onClick={() => handlePagination('-')}> - </Btn>
+          <Btn onClick={() => handlePagination('+')}> - </Btn>
         </PaginationBox>
       </PostBox>
     </PostBack>
