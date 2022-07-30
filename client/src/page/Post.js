@@ -1,139 +1,149 @@
+import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import Header from '../components/Header';
 
 export const PostBack = styled.div`
   width: 100%;
-  height: 100vh;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
 `;
-export const PostBox = styled.div`
-  width: 80%;
-  height: 90%;
+export const PostCommentBox = styled.div`
+  margin-top: 50px;
   border: 1px solid;
+  width: 90%;
+  height: auto;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
+  row-gap: 10px;
+`;
+export const PostBox = styled.div`
+  border: 1px solid;
+  width: 90%;
+  height: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+`;
+export const CommentsBox = styled.div`
+  border: 1px solid;
+  width: 90%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 1px;
 `;
 
-export const PostListBox = styled.div`
-  width: 90%;
-  height: 80%;
-  padding-top: 1px;
-  padding-bottom: 1px;
+export const PostTitle = styled.div`
+  padding: 5px;
   border: 1px solid;
+  width: 90%;
+  height: 30%;
+  position: relative;
+`;
+export const PostContent = styled.div`
+  padding: 5px;
+  border: 1px solid;
+  width: 90%;
+  height: 50%;
+  position: relative;
+`;
+export const PostUser = styled.div`
+  position: absolute;
+  bottom: 5px;
+  right: 10px;
+`;
+export const PostCommentCount = styled.div`
+  position: absolute;
+  bottom: 5px;
+  right: 10px;
+`;
+
+export const CommentBox = styled.div`
+  border: 1px solid;
+  width: 90%;
+  height: auto;
   display: flex;
   flex-direction: column;
+  justify-content: space-around;
   align-items: center;
-  row-gap: 1%;
 `;
-export const PaginationBox = styled.div`
+export const CommentName = styled.div`
+  border: 1px solid;
+  padding: 5px;
   width: 90%;
-  height: 10%;
-  border: 1px solid;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
+  height: 25px;
 `;
-export const PostList = styled.div`
+export const CommentBody = styled.div`
   border: 1px solid;
-  display: flex;
-  justify-content: space-around;
-  width: 95%;
-  height: 9%;
-`;
-export const PostTitle = styled.div`
-  width: 80%;
-  height: 35px;
-  line-height: 35px;
-  border: 1px solid;
-  text-align: center;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-`;
-export const PostUserId = styled.div`
-  width: 20%;
-  height: 35px;
-  line-height: 35px;
-  border: 1px solid;
-  text-align: center;
-`;
-export const Btn = styled.div`
-  border: 1px solid;
-  width: 5%;
-  text-align: center;
-  line-height: 30px;
-  height: 30px;
-  cursor: pointer;
+  padding: 5px;
+  width: 90%;
 `;
 
 function Post() {
-  const [posts, setPosts] = useState([]);
-  const [viewPosts, setviewPosts] = useState([]);
-  const [paginationNum, setPaginationNum] = useState(1);
+  const postUrlId = useParams().id;
+  const [postData, setPostData] = useState({});
+  const [commentsData, setCommentsData] = useState([]);
+
   useEffect(() => {
     axios
-      .get('https://jsonplaceholder.typicode.com/posts')
+      .get(`https://jsonplaceholder.typicode.com/posts/${postUrlId}`)
       .then((res) => {
-        setviewPosts(res.data);
+        setPostData(res.data);
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
+    axios
+      .get(`https://jsonplaceholder.typicode.com/comments`)
+      .then((res) => {
+        setCommentsData(
+          res.data.filter((el) => {
+            return el.postId === Number(postUrlId);
+          })
+        );
       })
       .catch((err) => {
         console.log(err);
       });
   }, []);
-  useEffect(() => {
-    setPosts(viewPosts.slice(0, 10));
-  }, [viewPosts]);
-  console.log(posts);
-  const handlePagination = (option) => {
-    if (option === '+' && paginationNum < 10) {
-      setPaginationNum(paginationNum + 1);
-    } else if (option === '-' && paginationNum > 1) {
-      setPaginationNum(paginationNum - 1);
-    }
-  };
-  useEffect(() => {
-    let num = paginationNum * 10;
-    setPosts(viewPosts.slice(num - 10, num));
-  }, [paginationNum]);
-
-  useEffect(() => {}, [paginationNum]);
+  console.log(commentsData);
   return (
     <PostBack>
-      <PostBox>
-        <PostListBox>
-          {posts.map((el) => {
+      <Header></Header>
+      <PostCommentBox>
+        <PostBox>
+          <PostTitle>
+            {postData.title}
+            <PostUser>작성자 {postData.userId} </PostUser>
+          </PostTitle>
+          <PostContent>
+            {postData.body}
+            <PostCommentCount>댓글 {commentsData.length}개</PostCommentCount>
+          </PostContent>
+        </PostBox>
+        <CommentsBox>
+          {commentsData.map((el, idx) => {
             return (
-              <PostList key={el.id}>
-                <PostTitle>{el.title}</PostTitle>
-                <PostUserId>작성자 {el.userId}</PostUserId>
-              </PostList>
+              <CommentBox key={el.id}>
+                <CommentName>{el.name}</CommentName>
+                <CommentBody>{el.body}</CommentBody>
+              </CommentBox>
             );
           })}
-        </PostListBox>
-        <PaginationBox>
-          <Btn onClick={() => handlePagination('-')}> + </Btn>
-          <Btn onClick={() => setPaginationNum(1)}> 1 </Btn>
-          <Btn onClick={() => setPaginationNum(2)}> 2 </Btn>
-          <Btn onClick={() => setPaginationNum(3)}> 3 </Btn>
-          <Btn onClick={() => setPaginationNum(4)}> 4 </Btn>
-          <Btn onClick={() => setPaginationNum(5)}> 5 </Btn>
-          <Btn onClick={() => setPaginationNum(6)}> 6 </Btn>
-          <Btn onClick={() => setPaginationNum(7)}> 7 </Btn>
-          <Btn onClick={() => setPaginationNum(8)}> 8 </Btn>
-          <Btn onClick={() => setPaginationNum(9)}> 9 </Btn>
-          <Btn onClick={() => setPaginationNum(10)}> 10 </Btn>
-          <Btn onClick={() => handlePagination('+')}> - </Btn>
-        </PaginationBox>
-      </PostBox>
+        </CommentsBox>
+      </PostCommentBox>
     </PostBack>
   );
 }
 
-// handlePagination(90, 100) 대시 stata 변경
-// useEffect로 저 stata 변경시 함수 실행되게
 export default Post;
