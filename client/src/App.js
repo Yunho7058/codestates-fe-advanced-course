@@ -1,12 +1,22 @@
-import Post from './page/Post';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { createGlobalStyle } from 'styled-components';
+import PostList from './page/PostList';
+import Post from './page/Post';
+
+const GlobalStyled = createGlobalStyle`
+body{
+  margin: 0px;
+}
+`;
 
 function App() {
   return (
     <>
+      <GlobalStyled />
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Post />} />
+          <Route path="/" element={<PostList />} />
+          <Route path="/:id" element={<Post />} />
         </Routes>
       </BrowserRouter>
     </>
