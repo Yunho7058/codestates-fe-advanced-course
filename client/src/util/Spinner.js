@@ -7,20 +7,9 @@ const Back = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-
-  &.img {
-    width: 250px;
-    height: 200px;
-    border-radius: 15px;
-  }
-  &.profilePoto {
-    width: 40px;
-    height: 40px;
-    border-radius: 20px;
-  }
 `;
 
-const Rotate = keyframes`     
+const rotate = keyframes`     
   from {transform: rotate(0deg)}
   to {transform: rotate(360deg)}
 `;
@@ -31,7 +20,7 @@ const SpinnerMain = styled.div`
   border: 4px solid #6495ed;
   border-top-color: transparent;
   border-left-color: transparent;
-  animation: ${Rotate} 0.7s infinite linear;
+  animation: ${rotate} 0.7s infinite linear;
   &.profilePoto {
     width: 25px;
     height: 25px;
