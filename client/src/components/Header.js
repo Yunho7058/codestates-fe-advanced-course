@@ -11,8 +11,6 @@ const HeaderBack = styled.div`
   justify-content: space-around;
   align-items: center;
   cursor: pointer;
-  > div.home {
-  }
 `;
 
 function Header() {
@@ -23,7 +21,6 @@ function Header() {
         onClick={() => {
           navigate('/');
         }}
-        className="home"
       >
         홈으로
       </div>

@@ -1,10 +1,10 @@
-import styled from 'styled-components';
+import styled, { g } from 'styled-components';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { BiChevronLeft, BiChevronRight, BiSearch } from 'react-icons/bi';
 import Header from '../components/Header';
 import Spinner from '../util/Spinner';
+
 
 function PostList() {
   const [posts, setPosts] = useState([]);
@@ -94,12 +94,13 @@ function PostList() {
           <Spinner></Spinner>
         ) : (
           <>
+            {' '}
             <PostsListBox>
               <PostHeader>
                 <div className="title">제목</div>
                 <div className="user">작성자</div>
               </PostHeader>
-              {allPosts.length > 0 && posts.length > 0 ? (
+              {posts.length > 0 ? (
                 posts.map((el) => {
                   return (
                     <PostsListSC
@@ -109,14 +110,7 @@ function PostList() {
                       {findStr ? (
                         <PostsTitle>
                           {el.title.split(findStr)[0]}
-                          <span
-                            style={{
-                              color: 'white',
-                              backgroundColor: '#BDB76B',
-                            }}
-                          >
-                            {findStr}
-                          </span>
+                          <span style={{ color: 'red' }}>{findStr}</span>
                           {el.title.split(findStr)[1]}
                         </PostsTitle>
                       ) : (
@@ -152,20 +146,17 @@ function PostList() {
                 onKeyPress={enterSearch}
                 placeholder="Search"
               />
-              <BiSearch size={20}></BiSearch>
-              {/* <PostSearchBtn onClick={() => handleSearch()}></PostSearchBtn> */}
+              <PostSearchBtn onClick={() => handleSearch()}>검색</PostSearchBtn>
             </PostSearchBox>
             <PaginationBox>
-              <Btn className="svg" onClick={() => handlePagination('-')}>
-                <BiChevronLeft size={25} />
-              </Btn>
+              <Btn onClick={() => handlePagination('-')}> + </Btn>
               {new Array(Math.ceil(viewPostLength / 10))
                 .fill(0)
                 .map((el, idx) => {
                   return (
                     <Btn
-                      current={idx + 1}
-                      select={paginationNum}
+                      active={idx + 1}
+                      pActive={paginationNum}
                       key={idx}
                       onClick={() => setPaginationNum(idx + 1)}
                     >
@@ -174,9 +165,7 @@ function PostList() {
                   );
                 })}
 
-              <Btn className="svg" onClick={() => handlePagination('+')}>
-                <BiChevronRight size={25} />
-              </Btn>
+              <Btn onClick={() => handlePagination('+')}> - </Btn>
             </PaginationBox>
           </>
         )}
