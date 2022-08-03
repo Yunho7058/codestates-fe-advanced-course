@@ -1,11 +1,12 @@
-import styled, { g } from 'styled-components';
+import styled from 'styled-components';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { BiChevronLeft, BiChevronRight, BiSearch } from 'react-icons/bi';
 import Header from '../components/Header';
 import Spinner from '../util/Spinner';
 
-export const PostsBack = styled.div`
+const PostsBack = styled.div`
   width: 100%;
 
   height: 100vh;
@@ -14,7 +15,7 @@ export const PostsBack = styled.div`
   align-items: center;
   background-color: #f7f6e9;
 `;
-export const PostsBox = styled.div`
+const PostsBox = styled.div`
   background-color: white;
   width: 80%;
   height: 90%;
@@ -25,10 +26,9 @@ export const PostsBox = styled.div`
   align-items: center;
   margin-top: 50px;
   border-radius: 20px;
-  box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.3);
+  box-shadow: 1px 1px 1px 0px rgba(0, 0, 0, 0.3);
 `;
-
-export const PostsListBox = styled.div`
+const PostsListBox = styled.div`
   width: 90%;
   height: 80%;
   padding-top: 1px;
@@ -38,15 +38,15 @@ export const PostsListBox = styled.div`
   flex-direction: column;
   align-items: center;
 `;
-export const PaginationBox = styled.div`
+const PaginationBox = styled.div`
   width: auto;
-  height: 10%;
+  height: 60px;
   /* border: 1px solid; */
   display: flex;
   column-gap: 5px;
   align-items: center;
 `;
-export const PostsListSC = styled.div`
+const PostsListSC = styled.div`
   /* border: 1px solid; */
   display: flex;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
@@ -57,7 +57,7 @@ export const PostsListSC = styled.div`
     border-bottom: 1px solid rgba(0, 0, 0, 0.2);
   }
 `;
-export const PostsTitle = styled.div`
+const PostsTitle = styled.div`
   width: 80%;
   height: 35px;
   line-height: 35px;
@@ -71,35 +71,56 @@ export const PostsTitle = styled.div`
     color: #969696;
   }
 `;
-export const PostsUserId = styled.div`
+const PostsUserId = styled.div`
   width: 20%;
   height: 35px;
   line-height: 35px;
 
   text-align: center;
 `;
-export const Btn = styled.div`
-  border: 1px solid;
+const Btn = styled.div`
   width: 30px;
-  text-align: center;
-  line-height: 30px;
   height: 30px;
+  font-size: 18px;
+  line-height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   cursor: pointer;
-  color: ${({ active, pActive }) => {
-    if (active === pActive) {
-      return 'red';
-    } else {
-      return 'green';
+  border-radius: 5px;
+  color: rgba(0, 0, 0, 0.7);
+
+  color: ${({ current, select }) => {
+    if (current === select) {
+      return 'white';
     }
   }};
+  background-color: ${({ current, select }) => {
+    if (current === select) {
+      return '#797272';
+    }
+  }};
+  &.svg {
+    margin-bottom: 2px;
+    color: rgba(0, 0, 0, 0.7);
+    background-color: white;
+  }
+  @media screen and (max-width: 500px) {
+    width: 20px;
+  }
 `;
 
 const PostSearchBox = styled.div`
   display: flex;
   align-items: center;
-
+  position: relative;
+  padding-right: 2px;
   border-radius: 10px;
   background-color: #dcdcdc;
+  > svg {
+    right: 10px;
+    position: absolute;
+  }
 `;
 const PostSearchSelect = styled.select`
   width: 60px;
@@ -111,22 +132,16 @@ const PostSearchSelect = styled.select`
   background-color: #dcdcdc;
 `;
 const PostSearchInput = styled.input`
-  width: 200px;
+  width: 120px;
   height: 30px;
   outline: none;
   border: 0px;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
   padding-left: 10px;
-  padding-right: 10px;
+  padding-right: 30px;
 `;
-const PostSearchBtn = styled.div`
-  width: 50px;
-  height: 32px;
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: 0px;
-`;
+
 const PostNotSearch = styled.div`
   width: 100%;
   height: 100%;
@@ -238,13 +253,12 @@ function PostList() {
           <Spinner></Spinner>
         ) : (
           <>
-            {' '}
             <PostsListBox>
               <PostHeader>
                 <div className="title">제목</div>
                 <div className="user">작성자</div>
               </PostHeader>
-              {posts.length > 0 ? (
+              {allPosts.length > 0 && posts.length > 0 ? (
                 posts.map((el) => {
                   return (
                     <PostsListSC
@@ -254,7 +268,14 @@ function PostList() {
                       {findStr ? (
                         <PostsTitle>
                           {el.title.split(findStr)[0]}
-                          <span style={{ color: 'red' }}>{findStr}</span>
+                          <span
+                            style={{
+                              color: 'white',
+                              backgroundColor: '#BDB76B',
+                            }}
+                          >
+                            {findStr}
+                          </span>
                           {el.title.split(findStr)[1]}
                         </PostsTitle>
                       ) : (
@@ -290,17 +311,20 @@ function PostList() {
                 onKeyPress={enterSearch}
                 placeholder="Search"
               />
-              <PostSearchBtn onClick={() => handleSearch()}>검색</PostSearchBtn>
+              <BiSearch size={20}></BiSearch>
+              {/* <PostSearchBtn onClick={() => handleSearch()}></PostSearchBtn> */}
             </PostSearchBox>
             <PaginationBox>
-              <Btn onClick={() => handlePagination('-')}> + </Btn>
+              <Btn className="svg" onClick={() => handlePagination('-')}>
+                <BiChevronLeft size={25} />
+              </Btn>
               {new Array(Math.ceil(viewPostLength / 10))
                 .fill(0)
                 .map((el, idx) => {
                   return (
                     <Btn
-                      active={idx + 1}
-                      pActive={paginationNum}
+                      current={idx + 1}
+                      select={paginationNum}
                       key={idx}
                       onClick={() => setPaginationNum(idx + 1)}
                     >
@@ -309,7 +333,9 @@ function PostList() {
                   );
                 })}
 
-              <Btn onClick={() => handlePagination('+')}> - </Btn>
+              <Btn className="svg" onClick={() => handlePagination('+')}>
+                <BiChevronRight size={25} />
+              </Btn>
             </PaginationBox>
           </>
         )}
