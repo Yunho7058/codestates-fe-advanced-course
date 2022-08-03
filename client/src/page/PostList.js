@@ -6,165 +6,6 @@ import { BiChevronLeft, BiChevronRight, BiSearch } from 'react-icons/bi';
 import Header from '../components/Header';
 import Spinner from '../util/Spinner';
 
-const PostsBack = styled.div`
-  width: 100%;
-
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #f7f6e9;
-`;
-const PostsBox = styled.div`
-  background-color: white;
-  width: 80%;
-  height: 90%;
-  /* border: 1px solid; */
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-  margin-top: 50px;
-  border-radius: 20px;
-  box-shadow: 1px 1px 1px 0px rgba(0, 0, 0, 0.3);
-`;
-const PostsListBox = styled.div`
-  width: 90%;
-  height: 80%;
-  padding-top: 1px;
-  padding-bottom: 1px;
-  /* border: 1px solid; */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
-const PaginationBox = styled.div`
-  width: auto;
-  height: 60px;
-  /* border: 1px solid; */
-  display: flex;
-  column-gap: 5px;
-  align-items: center;
-`;
-const PostsListSC = styled.div`
-  /* border: 1px solid; */
-  display: flex;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  align-items: center;
-  width: 95%;
-  height: 9%;
-  &:hover {
-    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-  }
-`;
-const PostsTitle = styled.div`
-  width: 80%;
-  height: 35px;
-  line-height: 35px;
-  /* border: 1px solid; */
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  padding-left: 25px;
-  cursor: pointer;
-  &:hover {
-    color: #969696;
-  }
-`;
-const PostsUserId = styled.div`
-  width: 20%;
-  height: 35px;
-  line-height: 35px;
-
-  text-align: center;
-`;
-const Btn = styled.div`
-  width: 30px;
-  height: 30px;
-  font-size: 18px;
-  line-height: 30px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  border-radius: 5px;
-  color: rgba(0, 0, 0, 0.7);
-
-  color: ${({ current, select }) => {
-    if (current === select) {
-      return 'white';
-    }
-  }};
-  background-color: ${({ current, select }) => {
-    if (current === select) {
-      return '#797272';
-    }
-  }};
-  &.svg {
-    margin-bottom: 2px;
-    color: rgba(0, 0, 0, 0.7);
-    background-color: white;
-  }
-  @media screen and (max-width: 500px) {
-    width: 20px;
-  }
-`;
-
-const PostSearchBox = styled.div`
-  display: flex;
-  align-items: center;
-  position: relative;
-  padding-right: 2px;
-  border-radius: 10px;
-  background-color: #dcdcdc;
-  > svg {
-    right: 10px;
-    position: absolute;
-  }
-`;
-const PostSearchSelect = styled.select`
-  width: 60px;
-  height: 36px;
-  border: 0px;
-  text-align: center;
-  border-radius: 10px;
-  outline: none;
-  background-color: #dcdcdc;
-`;
-const PostSearchInput = styled.input`
-  width: 120px;
-  height: 30px;
-  outline: none;
-  border: 0px;
-  border-top-right-radius: 10px;
-  border-bottom-right-radius: 10px;
-  padding-left: 10px;
-  padding-right: 30px;
-`;
-
-const PostNotSearch = styled.div`
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-const PostHeader = styled.div`
-  width: 95%;
-  height: 50px;
-  display: flex;
-  align-items: center;
-  text-align: center;
-  border-bottom: 3px solid #d2d2d2;
-
-  > div.title {
-    width: 80%;
-  }
-  > div.user {
-    width: 20%;
-  }
-`;
-
 function PostList() {
   const [posts, setPosts] = useState([]);
   const [allPosts, setAllPosts] = useState([]);
@@ -345,3 +186,162 @@ function PostList() {
 }
 
 export default PostList;
+
+const PostsBack = styled.div`
+  width: 100%;
+
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f7f6e9;
+`;
+const PostsBox = styled.div`
+  background-color: white;
+  width: 80%;
+  height: 90%;
+  /* border: 1px solid; */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 50px;
+  border-radius: 20px;
+  box-shadow: 1px 1px 1px 0px rgba(0, 0, 0, 0.3);
+`;
+const PostsListBox = styled.div`
+  width: 90%;
+  height: 80%;
+  padding-top: 1px;
+  padding-bottom: 1px;
+  /* border: 1px solid; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+const PaginationBox = styled.div`
+  width: auto;
+  height: 60px;
+  /* border: 1px solid; */
+  display: flex;
+  column-gap: 5px;
+  align-items: center;
+`;
+const PostsListSC = styled.div`
+  /* border: 1px solid; */
+  display: flex;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  align-items: center;
+  width: 95%;
+  height: 9%;
+  &:hover {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  }
+`;
+const PostsTitle = styled.div`
+  width: 80%;
+  height: 35px;
+  line-height: 35px;
+  /* border: 1px solid; */
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  padding-left: 25px;
+  cursor: pointer;
+  &:hover {
+    color: #969696;
+  }
+`;
+const PostsUserId = styled.div`
+  width: 20%;
+  height: 35px;
+  line-height: 35px;
+
+  text-align: center;
+`;
+const Btn = styled.div`
+  width: 30px;
+  height: 30px;
+  font-size: 18px;
+  line-height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border-radius: 5px;
+  color: rgba(0, 0, 0, 0.7);
+
+  color: ${({ current, select }) => {
+    if (current === select) {
+      return 'white';
+    }
+  }};
+  background-color: ${({ current, select }) => {
+    if (current === select) {
+      return '#797272';
+    }
+  }};
+  &.svg {
+    margin-bottom: 2px;
+    color: rgba(0, 0, 0, 0.7);
+    background-color: white;
+  }
+  @media screen and (max-width: 500px) {
+    width: 20px;
+  }
+`;
+
+const PostSearchBox = styled.div`
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding-right: 2px;
+  border-radius: 10px;
+  background-color: #dcdcdc;
+  > svg {
+    right: 10px;
+    position: absolute;
+  }
+`;
+const PostSearchSelect = styled.select`
+  width: 60px;
+  height: 36px;
+  border: 0px;
+  text-align: center;
+  border-radius: 10px;
+  outline: none;
+  background-color: #dcdcdc;
+`;
+const PostSearchInput = styled.input`
+  width: 120px;
+  height: 30px;
+  outline: none;
+  border: 0px;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  padding-left: 10px;
+  padding-right: 30px;
+`;
+
+const PostNotSearch = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+const PostHeader = styled.div`
+  width: 95%;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  border-bottom: 3px solid #d2d2d2;
+
+  > div.title {
+    width: 80%;
+  }
+  > div.user {
+    width: 20%;
+  }
+`;

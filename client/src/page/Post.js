@@ -5,6 +5,83 @@ import { useEffect, useState } from 'react';
 import Header from '../components/Header';
 import Spinner from '../util/Spinner';
 
+function Post() {
+  const postUrlId = useParams().id;
+  const [postData, setPostData] = useState({});
+  const [commentsData, setCommentsData] = useState([]);
+  const [isSpinner, setIsSpinner] = useState({ post: true, comment: true });
+  const [isShowComment, setIsShowComment] = useState(false);
+
+  useEffect(() => {
+    axios
+      .get(`https://jsonplaceholder.typicode.com/posts/${postUrlId}`)
+      .then((res) => {
+        setPostData(res.data);
+        setIsSpinner({ ...isSpinner, post: false });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
+    axios
+      .get(`https://jsonplaceholder.typicode.com/comments`)
+      .then((res) => {
+        setCommentsData(
+          res.data.filter((el) => {
+            return el.postId === Number(postUrlId);
+          })
+        );
+        setIsSpinner({ ...isSpinner, comment: false });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
+  const handleIsShowComment = () => {
+    setIsShowComment(!isShowComment);
+  };
+  return (
+    <PostBack>
+      <Header></Header>
+      <PostCommentBox>
+        {isSpinner.comment && isSpinner.post ? (
+          <Spinner />
+        ) : (
+          <>
+            <PostBox>
+              <PostTitle>
+                {postData.title}
+                <PostUser>작성자 {postData.userId} </PostUser>
+              </PostTitle>
+              <PostContent>
+                {postData.body}
+                <PostCommentCount onClick={() => handleIsShowComment()}>
+                  댓글 {commentsData.length}개
+                </PostCommentCount>
+              </PostContent>
+            </PostBox>
+            {isShowComment && (
+              <CommentsBox>
+                {commentsData.map((el, idx) => {
+                  return (
+                    <CommentBox key={el.id}>
+                      <CommentName>{el.name}</CommentName>
+                      <CommentBody>{el.body}</CommentBody>
+                    </CommentBox>
+                  );
+                })}
+              </CommentsBox>
+            )}
+          </>
+        )}
+      </PostCommentBox>
+    </PostBack>
+  );
+}
+
+export default Post;
+
 const PostBack = styled.div`
   width: 100%;
   height: 100vh;
@@ -108,80 +185,3 @@ const CommentBody = styled.div`
   width: 90%;
   border-bottom: 3px solid rgba(0, 0, 0, 0.1);
 `;
-
-function Post() {
-  const postUrlId = useParams().id;
-  const [postData, setPostData] = useState({});
-  const [commentsData, setCommentsData] = useState([]);
-  const [isSpinner, setIsSpinner] = useState({ post: true, comment: true });
-  const [isShowComment, setIsShowComment] = useState(false);
-
-  useEffect(() => {
-    axios
-      .get(`https://jsonplaceholder.typicode.com/posts/${postUrlId}`)
-      .then((res) => {
-        setPostData(res.data);
-        setIsSpinner({ ...isSpinner, post: false });
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-
-    axios
-      .get(`https://jsonplaceholder.typicode.com/comments`)
-      .then((res) => {
-        setCommentsData(
-          res.data.filter((el) => {
-            return el.postId === Number(postUrlId);
-          })
-        );
-        setIsSpinner({ ...isSpinner, comment: false });
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
-
-  const handleIsShowComment = () => {
-    setIsShowComment(!isShowComment);
-  };
-  return (
-    <PostBack>
-      <Header></Header>
-      <PostCommentBox>
-        {isSpinner.comment && isSpinner.post ? (
-          <Spinner />
-        ) : (
-          <>
-            <PostBox>
-              <PostTitle>
-                {postData.title}
-                <PostUser>작성자 {postData.userId} </PostUser>
-              </PostTitle>
-              <PostContent>
-                {postData.body}
-                <PostCommentCount onClick={() => handleIsShowComment()}>
-                  댓글 {commentsData.length}개
-                </PostCommentCount>
-              </PostContent>
-            </PostBox>
-            {isShowComment && (
-              <CommentsBox>
-                {commentsData.map((el, idx) => {
-                  return (
-                    <CommentBox key={el.id}>
-                      <CommentName>{el.name}</CommentName>
-                      <CommentBody>{el.body}</CommentBody>
-                    </CommentBox>
-                  );
-                })}
-              </CommentsBox>
-            )}
-          </>
-        )}
-      </PostCommentBox>
-    </PostBack>
-  );
-}
-
-export default Post;
