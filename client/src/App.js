@@ -6,6 +6,10 @@ import Post from './page/Post';
 const GlobalStyled = createGlobalStyle`
 body{
   margin: 0px;
+  overflow-y: scroll;
+ 
+font-family: 'IBM Plex Sans KR';
+
 }
 `;
 

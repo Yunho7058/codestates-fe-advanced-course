@@ -1,6 +1,8 @@
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import logo from '../assets/logo.png';
 const HeaderBack = styled.div`
+  min-width: 350px;
   position: fixed;
   top: 0px;
   background-color: #ddd4c9;
@@ -11,23 +13,21 @@ const HeaderBack = styled.div`
   justify-content: space-around;
   align-items: center;
   cursor: pointer;
-  > div.home {
-  }
+`;
+const Logo = styled.img`
+  width: 100px;
 `;
 
 function Header() {
   const navigate = useNavigate();
   return (
     <HeaderBack>
-      <div
+      <Logo
+        src={logo}
         onClick={() => {
           navigate('/');
         }}
-        className="home"
-      >
-        홈으로
-      </div>
-      <div>사전과제</div>
+      />
     </HeaderBack>
   );
 }

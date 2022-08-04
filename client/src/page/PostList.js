@@ -189,7 +189,7 @@ export default PostList;
 
 const PostsBack = styled.div`
   width: 100%;
-
+  min-width: 350px;
   height: 100vh;
   display: flex;
   justify-content: center;
@@ -256,8 +256,10 @@ const PostsUserId = styled.div`
   width: 20%;
   height: 35px;
   line-height: 35px;
-
   text-align: center;
+  @media screen and (max-width: 450px) {
+    font-size: 12px;
+  }
 `;
 const Btn = styled.div`
   width: 30px;
@@ -286,8 +288,9 @@ const Btn = styled.div`
     color: rgba(0, 0, 0, 0.7);
     background-color: white;
   }
-  @media screen and (max-width: 500px) {
-    width: 20px;
+  @media screen and (max-width: 550px) {
+    width: 15px;
+    font-size: 14px;
   }
 `;
 
@@ -343,5 +346,8 @@ const PostHeader = styled.div`
   }
   > div.user {
     width: 20%;
+  }
+  @media screen and (max-width: 450px) {
+    font-size: 14px;
   }
 `;
