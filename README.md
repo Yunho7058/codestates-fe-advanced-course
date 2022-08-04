@@ -3,12 +3,17 @@
 ## 배포 링크 
 
 ## 구현 이미지
-* 게시물, 댓글 랜더링
-<img src="./GIF/과제_랜더링.gif" />
+* 게시물, 댓글 렌더링
+<img src="./GIF/rendering.gif" />
 
 * 게시물 페이지네이션 기능
-* 게시물 필터 기능
+<img src="./GIF/pagination.gif" />
+
+* 게시물 검색 기능
+<img src="./GIF/search.gif" />
+
 * 반응형 웹
+<img src="./GIF/responsive.gif" />
 
 ## 프로젝트 실행 방법
 1. git clone
