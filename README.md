@@ -17,9 +17,10 @@ https://yunho7058.github.io/
 <img src="./GIF/responsive.gif" />
 
 ## 프로젝트 실행 방법
-1. git clone
-2. npm install
-3. npm start
+1. 해당 레파지토리 url 복사 후 터미널에 `git clone 복사한url`
+2. client 파일 접근 (터미널 경로 확인) 명령어 `cd client` 
+3. 터미널에 `npm install` 입력 (모든 패키지 다운로드)
+4. 터미널에 `npm start` 입력 후 웹 이용
 
 ## 사용 스텍
 <div>
