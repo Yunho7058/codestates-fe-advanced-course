@@ -1,19 +1,19 @@
 # codestates-fe-advanced-course
 
-### 배포 링크 :
+## 배포 링크 
 
-### 구현 이미지
+## 구현 이미지
 * 게시물, 댓글 랜더링
 * 게시물 페이지네이션 기능
 * 게시물 필터 기능
 * 반응형 웹
 
-#### 프로젝트 실행 방법
+## 프로젝트 실행 방법
 1. git clone
 2. npm install
 3. npm start
 
-### 사용 스텍
+## 사용 스텍
 <div>
   <img src="https://img.shields.io/badge/javascript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black">   
   <img src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=black"> 
@@ -21,6 +21,8 @@
   <img src="https://img.shields.io/badge/HTML-E34F26?style=for-the-badge&logo=html5&logoColor=white">
   <img src="https://img.shields.io/badge/Css-1572B6?style=for-the-badge&logo=css3&logoColor=white">
 </div>
+
+
 
 ## 구현한 기능 목록
 ### Bare Minimum
@@ -32,3 +34,9 @@
  * 게시물 리스트 페이지네이션 기능 구현
  * 게시물 검색 기능 구현
  * 반응형 Web 구현(폰트,크기)
+ 
+
+ 
+ ## 구현 방법 혹은 구현하면서 어려웠던 점
+ 
+ 
