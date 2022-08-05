@@ -14,9 +14,11 @@ const HeaderBack = styled.div`
   justify-content: space-around;
   align-items: center;
   cursor: pointer;
+
 `;
 const Logo = styled.img`
   width: 100px;
+
 `;
 
 const Header = memo(function () {
