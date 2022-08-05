@@ -47,30 +47,33 @@ https://yunho7058.github.io/
 
  
  ## 구현 방법 혹은 구현하면서 어려웠던 점
- * 초기 setting
-  * 사용 스텍 정하기 : 많은 데이타를 관리하지 않기때문에 따로 상태라이브러리를 사용하지 않고 React-Hooks 사용   
-  * 디렉토리 구조  : 리액트의 많은 컴포넌트를 재사용 및 유지보수를 하기위해 컴포넌트를 나눠관리하면 더욱더 효울적으로 관리할수있다. 공식문서에서 정해져있는 구조는 없다고 한다, 일반적인 방식은 있으나 개인이나 회사에 맞춰 구조를 짜면 될것같다. 아래는 내가 구성한 폴더와 컴포넌트 구조이다.
-  > 📁 src 
-  > > 📁 assets
-  > > > 🖼 사용이미지
-  > > > 
-  > > 📁 components
-  > > > 📄 Headers.js
-  > > > 
-  > > 📁 page
-  > > > 📄 Post.js
-  > > > 📄 PostList.js
-  > > 
-  > > 📁 util
-  > > > 📄 Spinner.js
-  > > 
-  > > 📄 App.js
-  > > 
-  > > 📄 index.js
-  * 동적 라우팅 : `<Route path="/:id" element={<Post />} />` 게시물 리스트에서 해당 게시물 클릭하여 해당아이디 url 접속, 게시물 접속 후 useParams 를 사용하여  해당 게시물 정보(JSON Placeholder API 요청) 불러오도록 작성하였습니다.
+ * 초기 설정
+    * 사용 스텍 정하기 : 많은 데이타를 관리하지 않기때문에 따로 상태라이브러리를 사용하지 않고 React-Hooks 사용   
+    * 디렉토리 구조  : 리액트의 많은 컴포넌트를 재사용 및 유지보수를 하기위해 컴포넌트를 나눠관리하면 더욱더 효울적으로 관리할수있다. 공식문서에서 정해져있는 구조는 없다고 한다, 일반적인 방식은 있으나 개인이나 회사에 맞춰 구조를 짜면 될것같다. 아래는 내가 구성한 폴더와 컴포넌트 구조이다.
+        > 📁 src 
+        > > 📁 assets
+        > > > 🖼 사용이미지
+        > > > 
+        > > 📁 components
+        > > > 📄 Headers.js
+        > > > 
+        > > 📁 page
+        > > > 📄 Post.js
+        > > > 📄 PostList.js
+        > > 
+        > > 📁 util
+        > > > 📄 Spinner.js
+        > > 
+        > > 📄 App.js
+        > > 
+        > > 📄 index.js
+    * 동적 라우팅 : `<Route path="/:id" element={<Post />} />` 게시물 리스트에서 해당 게시물 클릭하여 해당아이디 url 접속, 게시물 접속 후 useParams 를 사용하여  해당 게시물 정보(JSON Placeholder API 요청) 불러오도록 작성하였습니다.
   
 ## Wireframe
 https://www.figma.com/file/7fVTbytHbxCf4pt3TnF7FX/Untitled
+피그마 툴을 사용해 간단한 Wireframe 작성
+
+<img src="./GIF/wireframe.png" />
 
 ## 성능 최적화 개선 방법
 
