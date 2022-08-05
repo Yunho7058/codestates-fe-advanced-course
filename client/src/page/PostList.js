@@ -152,8 +152,7 @@ function PostList() {
                 onKeyPress={enterSearch}
                 placeholder="Search"
               />
-              <BiSearch size={20}></BiSearch>
-              {/* <PostSearchBtn onClick={() => handleSearch()}></PostSearchBtn> */}
+              <BiSearch size={20} onClick={() => handleSearch()}></BiSearch>
             </PostSearchBox>
             <PaginationBox>
               <Btn className="svg" onClick={() => handlePagination('-')}>
@@ -200,7 +199,6 @@ const PostsBox = styled.div`
   background-color: white;
   width: 80%;
   height: 90%;
-  /* border: 1px solid; */
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -214,7 +212,6 @@ const PostsListBox = styled.div`
   height: 80%;
   padding-top: 1px;
   padding-bottom: 1px;
-  /* border: 1px solid; */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -222,13 +219,11 @@ const PostsListBox = styled.div`
 const PaginationBox = styled.div`
   width: auto;
   height: 60px;
-  /* border: 1px solid; */
   display: flex;
   column-gap: 5px;
   align-items: center;
 `;
 const PostsListSC = styled.div`
-  /* border: 1px solid; */
   display: flex;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   align-items: center;
@@ -242,7 +237,6 @@ const PostsTitle = styled.div`
   width: 80%;
   height: 35px;
   line-height: 35px;
-  /* border: 1px solid; */
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;

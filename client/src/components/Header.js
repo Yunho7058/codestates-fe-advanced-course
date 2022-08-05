@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import logo from '../assets/logo.png';
@@ -18,8 +19,9 @@ const Logo = styled.img`
   width: 100px;
 `;
 
-function Header() {
+const Header = memo(function () {
   const navigate = useNavigate();
+
   return (
     <HeaderBack>
       <Logo
@@ -30,6 +32,6 @@ function Header() {
       />
     </HeaderBack>
   );
-}
+});
 
 export default Header;
