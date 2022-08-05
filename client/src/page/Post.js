@@ -108,8 +108,6 @@ const PostCommentBox = styled.div`
   row-gap: 10px;
   margin-top: 50px;
   border-radius: 20px;
-
-  /* box-shadow: 1px 1px 1px 0px rgba(0, 0, 0, 0.3); */
 `;
 const PostBox = styled.div`
   width: 95%;
@@ -122,7 +120,6 @@ const PostBox = styled.div`
   border-radius: 15px;
   box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.2);
 `;
-//rgba(248, 248, 255, 0);
 const CommentsBox = styled.div`
   background-color: rgba(248, 248, 255, 0.7);
   border-radius: 15px;
@@ -145,7 +142,6 @@ const PostTitle = styled.div`
 
   position: relative;
   font-size: 24px;
-  /* border-bottom: 1px solid rgba(0, 0, 0, 0.3); */
   @media screen and (max-width: 600px) {
     font-size: 20px;
   }
