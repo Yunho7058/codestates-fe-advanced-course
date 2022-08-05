@@ -87,9 +87,12 @@ Figma 툴을 사용해 간단한 Wireframe 작성
     setPosts(allPosts.slice(0, 10));
   }, [allPosts]);`
 * 게시물 검색 기능
-  > 간략설명 : 찾고자하는 단어를 전체게시물`allPost`에 `filter()`와 `includes()` 함수를 사용하여 필터된 게시물 `posts`저장 후 렌더링
+  > 간략설명 : 찾고자하는 단어를 전체게시물`allPost`에 `filter()`와 `includes()` 함수를 사용하여 필터된 게시물 `posts`저장 후 렌더링되게 구현하였습니다.
   > * 사용자가 입력한 찾고자 하는 단어 `selectValue`(state) 입력
   > * 전체 게시물`allPost`에서 `selectValue`를 `filter()`와 `includes()` 사용하여 전체 게시물 제목 = `selectValue` 필터
   > * 필터된 데이타 `posts` 저장 후 랜더링
 * JSON Placeholder API 요청 후 데이터 로딩시 스피너 랜더링 기능
-  > 간략설명 : Spinner.js에 Spinner 커스텀 후 사용하고자 하는 component로 import 후 `isSpinner`(state) Boolean 값을 사용하여 데이터 요청 전 랜더링, 요청 후 게시물 랜더링 
+  > 간략설명 : Spinner.js에 Spinner 커스텀 후 사용하고자 하는 component로 import 후 `isSpinner`(state) Boolean 값을 사용하여 데이터 요청 전 랜더링, 요청 후 게시물 랜더링되게 구현하였습니다. 
+* 반응형 웹 구현
+  > 간략설명 : Media Query를 사용하여 width 조건에 따른 반응형 웹 구현하였습니다.
+  > 추가로 Media 크기에 따라 컴포넌트 하나하나에  Media Query를 사용하여 구현하니 많은 번거로운이 있었다. 추후에는 react-responsive 라이브러리의 useMediaQuery를 사용하여 Media 크기에 따른 변수를 설정하고 컴포넌트로 변수로 넘겨주면 간편하게 구현할 수 있을것같다.
