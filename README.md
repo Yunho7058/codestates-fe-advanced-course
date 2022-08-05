@@ -67,7 +67,7 @@ https://yunho7058.github.io/
         > > 📄 App.js
         > > 
         > > 📄 index.js
-    * 동적 라우팅 : `<Route path="/:id" element={<Post />} />` 게시물 리스트에서 해당 게시물 클릭하여 해당아이디 url 접속, 게시물 접속 후 useParams 를 사용하여  해당 게시물 정보(JSON Placeholder API 요청) 불러오도록 작성하였습니다.
+    * 동적 라우팅 : `<Route path="/:id" element={<Post />} />` 게시물 리스트에서 해당 게시물 클릭하여 해당아이디 url 접속, 게시물 접속 후 useParams 를 사용하여  해당 게시물 정보(JSON Placeholder API 요청)를 불러오도록 작성하였습니다.
   
 ## Wireframe
 https://www.figma.com/file/7fVTbytHbxCf4pt3TnF7FX/Untitled
@@ -87,8 +87,8 @@ Figma 툴을 사용해 간단한 Wireframe 작성
     setPosts(allPosts.slice(0, 10));
   }, [allPosts]);`
   * 페이지네이션 동작
-    > 간략설명 : 보여줄 게시물`posts`길이에 따른 버튼 생성
-    > * `posts`길이를 10으로 나누고 `Math.ceil()`함수를 사용하여 표시될 가장큰 버튼 번호 생성
+    > 간략설명 : 전체 게시물 or 필터된 게시물 길이에 따른 버튼 생성, onClick 이벤트 함수와 작성한 useEffect 함수를 사용하여 동작되도록 구현하였습니다.
+    > * 전체 게시물 or 필터된 게시물 길이를 10으로 나누고 `Math.ceil()`함수를 사용하여 가장큰 번호 생성
     > * `new Array(위에서 구한 수).fill(0)`를 사용 후 `map()`으로 페이지네이션 버튼 생성
     > * `paginationNum` state 생성 후 페이지네이션 버튼 클릭시 그 해당번호 저장 `setPaginationNum(해당번호)`
     > * useEffect 생성 하여 `paginationNum` 변경시 마다 실행
@@ -101,7 +101,7 @@ Figma 툴을 사용해 간단한 Wireframe 작성
   > 간략설명 : 찾고자하는 단어를 전체게시물`allPost`에 `filter()`와 `includes()` 함수를 사용하여 필터된 게시물 `posts`저장 후 렌더링되게 구현하였습니다.
   > * 사용자가 입력한 찾고자 하는 단어 `searchValue`(state) 입력
   > * 전체 게시물`allPost`에서 `searchValue`를 `filter()`와 `includes()` 사용하여 전체 게시물 제목 = `selectValue` 필터
-  > * 필터된 데이타 `posts` 저장 후 랜더링
+  > * 필터된 데이 `posts` 저장 후 랜더링
 * JSON Placeholder API 요청 후 데이터 로딩시 스피너 랜더링 기능
   > 간략설명 : Spinner.js에 Spinner 커스텀 후 사용하고자 하는 component로 import 후 `isSpinner`(state) Boolean 값을 사용하여 데이터 요청 전 랜더링, 요청 후 게시물 랜더링되게 구현하였습니다. 
 * 반응형 웹 구현
