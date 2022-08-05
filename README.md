@@ -72,7 +72,7 @@ https://yunho7058.github.io/
 ## Wireframe
 https://www.figma.com/file/7fVTbytHbxCf4pt3TnF7FX/Untitled
 
-피그마 툴을 사용해 간단한 Wireframe 작성
+Figma 툴을 사용해 간단한 Wireframe 작성
 
 <img src="./GIF/wireframeImg.png" />
 
@@ -80,5 +80,16 @@ https://www.figma.com/file/7fVTbytHbxCf4pt3TnF7FX/Untitled
 
 ## 추가 구현 방법
 * 게시물 리스트 페이지네이션
+  > 간략설명 : JSON Placeholder API에서 파라미터 단위로 데이터 갯수를 제한한 요청은 지원되지 않아 전체 게시물을 10개 단위로 slice 하여 state 저장후 랜더링되게 구현하였습니다.
+  > * JSON Placeholder API에서 게시물 요청 하여  `allPost`(state) 100개의 게시물 저장
+  > * 초기 설정을 위해 useEffect를 사용하여 `allPost` 변경 될때 전체 게시물을 10개로 짤라   `posts`(UI 보이는 state) 저장 후 랜더링
+  > * ` useEffect(() => {
+    setPosts(allPosts.slice(0, 10));
+  }, [allPosts]);`
 * 게시물 검색 기능
+  > 간략설명 : 찾고자하는 단어를 전체게시물`allPost`에 `filter()`와 `includes()` 함수를 사용하여 필터된 게시물 `posts`저장 후 렌더링
+  > * 사용자가 입력한 찾고자 하는 단어 `selectValue`(state) 입력
+  > * 전체 게시물`allPost`에서 `selectValue`를 `filter()`와 `includes()` 사용하여 전체 게시물 제목 = `selectValue` 필터
+  > * 필터된 데이타 `posts` 저장 후 랜더링
 * JSON Placeholder API 요청 후 데이터 로딩시 스피너 랜더링 기능
+  > 간략설명 : Spinner.js에 Spinner 커스텀 후 사용하고자 하는 component로 import 후 `isSpinner`(state) Boolean 값을 사용하여 데이터 요청 전 랜더링, 요청 후 게시물 랜더링 
