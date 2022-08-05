@@ -71,9 +71,10 @@ https://yunho7058.github.io/
   
 ## Wireframe
 https://www.figma.com/file/7fVTbytHbxCf4pt3TnF7FX/Untitled
+
 피그마 툴을 사용해 간단한 Wireframe 작성
 
-<img src="./GIF/wireframe.png" />
+
 
 ## 성능 최적화 개선 방법
 
